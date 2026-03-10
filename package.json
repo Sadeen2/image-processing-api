@@ -1,0 +1,38 @@
+{
+  "name": "image-processing-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc",
+    "test": "npm run build && jasmine",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/jasmine": "^6.0.0",
+    "@types/supertest": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.0",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "jasmine": "^6.1.0",
+    "jiti": "^2.6.1",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
+    "supertest": "^7.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0"
+  }
+}

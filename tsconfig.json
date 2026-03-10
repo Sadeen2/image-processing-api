@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "types": ["node", "jasmine"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["node_modules", "build", "eslint.config.mts"]
+}
