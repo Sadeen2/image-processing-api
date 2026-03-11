@@ -14,12 +14,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const resize_1 = __importDefault(require("../utilities/resize"));
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 describe("Image Processing Function", () => {
+    const input = path_1.default.join(process.cwd(), "images/full/rose.jpg");
+    const output = path_1.default.join(process.cwd(), "images/thumb/test-200-200.jpg");
+    afterEach(() => {
+        if (fs_1.default.existsSync(output)) {
+            fs_1.default.unlinkSync(output);
+        }
+    });
     it("should resize image successfully", () => __awaiter(void 0, void 0, void 0, function* () {
-        const input = "images/full/rose.jpg";
-        const output = "images/thumb/test-200-200.jpg";
         yield (0, resize_1.default)(input, output, 200, 200);
-        const exists = fs_1.default.existsSync(output);
-        expect(exists).toBeTrue();
+        expect(fs_1.default.existsSync(output)).toBeTrue();
+    }));
+    it("should throw error when input image does not exist", () => __awaiter(void 0, void 0, void 0, function* () {
+        const badInput = path_1.default.join(process.cwd(), "images/full/notfound.jpg");
+        yield expectAsync((0, resize_1.default)(badInput, output, 200, 200)).toBeRejected();
     }));
 });

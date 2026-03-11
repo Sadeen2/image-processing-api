@@ -20,23 +20,29 @@ const router = express_1.default.Router();
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const filename = req.query.filename;
-        const width = parseInt(req.query.width);
-        const height = parseInt(req.query.height);
+        const widthStr = req.query.width;
+        const heightStr = req.query.height;
         // check filename
         if (!filename) {
-            return res.status(400).send("filename parameter is required");
+            return res.status(400).send("Missing filename parameter");
         }
-        // check width & height
-        if (!width || !height || width <= 0 || height <= 0) {
+        // check width & height parameters exist
+        if (!widthStr || !heightStr) {
+            return res.status(400).send("Missing width or height parameter");
+        }
+        const width = parseInt(widthStr);
+        const height = parseInt(heightStr);
+        // check valid numbers
+        if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
             return res
                 .status(400)
-                .send("width and height must be positive numbers");
+                .send("Invalid width or height values (must be positive numbers)");
         }
         const fullPath = path_1.default.resolve(`images/full/${filename}.jpg`);
         const thumbPath = path_1.default.resolve(`images/thumb/${filename}-${width}-${height}.jpg`);
         // check image exists
         if (!fs_1.default.existsSync(fullPath)) {
-            return res.status(404).send("Image not found");
+            return res.status(404).send("Image file does not exist");
         }
         // create resized image if not cached
         if (!fs_1.default.existsSync(thumbPath)) {
